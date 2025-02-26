@@ -24,9 +24,32 @@ output "instance_public_ip" {
 }
 output "rds_endpoint" {
     description = "Endpoint RDS"
-    value = aws_db_instance.databia.endpoint
+    value = aws_db_instance.bia.endpoint
 }
 output "rds_arn" {
     description = "Endpoint RDS"
-    value = aws_db_instance.databia.arn
+    value = aws_db_instance.bia.arn
+}
+output "rds_secrets" {
+  description = "Secrets associado ao RDS"
+  value       = tolist(aws_db_instance.bia.master_user_secret)[0].secret_arn
+}
+
+output "bia_repo_url" {
+  value = aws_ecr_repository.bia.repository_url
+}
+  
+output "rds_secret_name" {
+  description = "Nome do meu segredo"
+  value = data.aws_secretsmanager_secret.bia_db.name
+}  
+
+output "aws_acm_certificate" {
+  description = "ARN fo meu certificado"
+  value = aws_acm_certificate.cert.arn
+}  
+
+output "url_alb" {
+  description = "ALB URL"
+  value = aws_lb.bia.dns_name
 }

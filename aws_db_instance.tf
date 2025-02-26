@@ -1,42 +1,39 @@
-resource "aws_db_instance" "databia" {
+resource "aws_db_instance" "bia" {
   allocated_storage                     = 20
   allow_major_version_upgrade           = null
   apply_immediately                     = null
   auto_minor_version_upgrade            = true
-  availability_zone                     = "us-east-1b"
-  backup_retention_period               = 1
+  backup_retention_period               = 0
   backup_target                         = "region"
-  backup_window                         = "10:19-10:49"
+  backup_window                         = "09:03-09:33"
   ca_cert_identifier                    = "rds-ca-rsa2048-g1"
   character_set_name                    = null
   copy_tags_to_snapshot                 = true
   custom_iam_instance_profile           = null
   customer_owned_ip_enabled             = false
   db_name                               = "bia"
-  db_subnet_group_name                  = "bia-tf"
   dedicated_log_volume                  = false
   delete_automated_backups              = true
   deletion_protection                   = false
   domain                                = null
   domain_auth_secret_arn                = null
-# domain_dns_ips                        = []
   domain_fqdn                           = null
   domain_iam_role_name                  = null
   domain_ou                             = null
   enabled_cloudwatch_logs_exports       = []
   engine                                = "postgres"
   engine_lifecycle_support              = "open-source-rds-extended-support-disabled"
-  engine_version                        = "16.3"
+  engine_version                        = jsonencode(16.3)
   final_snapshot_identifier             = null
   iam_database_authentication_enabled   = false
-  identifier                            = "databia"
+  identifier                            = "bia"
   identifier_prefix                     = null
   instance_class                        = "db.t4g.micro"
   iops                                  = 0
   kms_key_id                            = "arn:aws:kms:us-east-1:767397833843:key/a280c5fe-7c45-4f92-a127-fc9381e993dc"
   license_model                         = "postgresql-license"
-  maintenance_window                    = "sat:04:00-sat:04:30"
-  manage_master_user_password           = null
+  maintenance_window                    = "thu:07:40-thu:08:10"
+  manage_master_user_password           = true
   master_user_secret_kms_key_id         = null
   max_allocated_storage                 = 1000
   monitoring_interval                   = 0
@@ -46,9 +43,7 @@ resource "aws_db_instance" "databia" {
   network_type                          = "IPV4"
   option_group_name                     = "default:postgres-16"
   parameter_group_name                  = "default.postgres16"
-  password                              = "f3rn4ndo"
-  #password_wo                           = null # sensitive
-  #password_wo_version                   = null
+  password                              = null # sensitive
   performance_insights_enabled          = false
   performance_insights_kms_key_id       = null
   performance_insights_retention_period = 0
@@ -64,7 +59,17 @@ resource "aws_db_instance" "databia" {
   tags                                  = {}
   tags_all                              = {}
   timezone                              = null
-  upgrade_storage_config                = null
   username                              = "postgres"
   vpc_security_group_ids                = [aws_security_group.bia_db.id]
+  db_subnet_group_name = aws_db_subnet_group.bia.name
 }
+
+resource "aws_db_subnet_group" "bia" {
+  name = "bia-subnet-group"
+  subnet_ids = [local.subnet_zona_a,local.subnet_zona_b]
+  
+  tags = {
+    name = "bia-subnet-group"
+  }
+}
+  
