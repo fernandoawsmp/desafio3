@@ -81,3 +81,7 @@ output "private_subnets" {
 output "internet_gateway_id" {
   value = aws_internet_gateway.gw.id
 }
+
+output "ecr_repository_id" {
+  value = aws_ecr_repository.bia.repository_url
+}
