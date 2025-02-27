@@ -30,8 +30,6 @@ resource "aws_iam_role" "role_acesso_ssm" {
   tags_all              = {}
 }
 
-
-
 #permite acesso ssm a instancia
 #resource "aws_iam_role_policy_attachment" "ssm_managed_instance_core" {
 #  role       = aws_iam_role.role_acesso_ssm.name

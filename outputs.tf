@@ -44,12 +44,40 @@ output "rds_secret_name" {
   value = data.aws_secretsmanager_secret.bia_db.name
 }  
 
-output "aws_acm_certificate" {
-  description = "ARN fo meu certificado"
-  value = aws_acm_certificate.cert.arn
-}  
-
 output "url_alb" {
   description = "ALB URL"
   value = aws_lb.bia.dns_name
+}
+
+output "vpc_id" {
+  description ="Vpc ID"
+  value = aws_vpc.main.id
+}
+
+#output "public_subnets" {
+  #value = [aws_subnet.public_a.id, aws_subnet.public_b.id, aws_subnet.public_c.id, aws_subnet.public_d.id]
+#}
+
+output "public_subnets_a" {
+  value= [aws_subnet.public_a.id]
+}
+
+output "public_subnets_b" {
+  value= [aws_subnet.public_b.id]
+}
+
+output "public_subnets_c" {
+  value= [aws_subnet.public_c.id]
+}
+
+output "public_subnets_d" {
+  value= [aws_subnet.public_d.id]
+}
+
+output "private_subnets" {
+  value = [aws_subnet.private_a.id, aws_subnet.private_b.id]
+}
+
+output "internet_gateway_id" {
+  value = aws_internet_gateway.gw.id
 }
