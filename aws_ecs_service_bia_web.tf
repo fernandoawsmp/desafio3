@@ -1,3 +1,4 @@
+#service bia
 resource "aws_ecs_service" "bia" {
   name            = "service-bia"
   cluster         = aws_ecs_cluster.cluster-bia.id

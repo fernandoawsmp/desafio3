@@ -5,7 +5,6 @@ resource "aws_ecs_task_definition" "bia-web" {
     container_definitions = jsonencode([{
       name         = "bia",
       image        = "${aws_ecr_repository.bia.repository_url}:latest",
-      #image        = "767397833843.dkr.ecr.us-east-1.amazonaws.com/bia2:latest"
       essential    = true
       portMappings = [{ containerPort = 8080, hostPort = 0 }],
       cpu    = 1024
