@@ -1,3 +1,4 @@
+#voc_default
 locals {
   vpc_id="vpc-03d69691148289280"
   subnet_zona_a="subnet-0b0ea4fdf51bf061a"

@@ -37,11 +37,11 @@ resource "aws_lb_listener" "bia" {
 }
 
 resource "aws_lb_listener" "https_bia" {
-    load_balancer_arn = aws_lb.bia.arn
+    load_balancer_arn = aws_lb.bia.id
     port              = 443
     protocol          = "HTTPS"
     ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
-    certificate_arn   = "arn:aws:acm:us-east-1:767397833843:certificate/6fd24181-ebd5-4a6c-a645-9da14ce486b8"
+    certificate_arn   = aws_acm_certificate.imported_cert.arn
 
     default_action {
     type             = "forward"

@@ -85,3 +85,7 @@ output "internet_gateway_id" {
 output "ecr_repository_id" {
   value = aws_ecr_repository.bia.repository_url
 }
+
+output "aws_acm_certificate"{
+  value = aws_acm_certificate.imported_cert.arn
+}

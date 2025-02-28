@@ -1,6 +1,6 @@
 resource "aws_route53_record" "alb_record" {
   zone_id = "Z00550052ADIVVV2Z3C5Z"  
-  name    = "bia.fmp.eti.br"
+  name    = "*.fmp.eti.br"
   type    = "A"
 
   alias {
